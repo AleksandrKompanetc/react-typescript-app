@@ -15,6 +15,8 @@ function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
+  const addUser = () => {}
+
   return (
     <div className="App">
       <h1>Users</h1>
