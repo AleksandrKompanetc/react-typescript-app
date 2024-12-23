@@ -17,7 +17,20 @@ function App() {
 
   return (
     <div className="App">
-      Users
+      <h1>Users</h1>
+      <input 
+        type="text"
+        placeholder='Name'
+        value={name}
+        onChange={e => setName(e.target.value)} 
+      />
+      <input
+        type='email'
+        placeholder='Email'
+        value={email} 
+        onChange={e => setEmail(e.target.value)}
+      />
+      <button onClick={addUser}>Add User</button>
     </div>
   );
 }
