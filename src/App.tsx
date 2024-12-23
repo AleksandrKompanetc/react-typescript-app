@@ -11,7 +11,10 @@ function App() {
   const [users, setUsers] = useState<User[]>([
     {id: 1, name: 'Alice', email: 'alice@example.com'},
     {id: 2, name: 'Bob', email: 'bob@example.com'}
-  ])
+  ]);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
   return (
     <div className="App">
       Users
