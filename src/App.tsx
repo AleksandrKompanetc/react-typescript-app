@@ -69,7 +69,13 @@ function App() {
         />
         <button onClick={addUser}>Add User</button>
       </div>
-      <ul>
+      {loading ? (
+        <p>Loading...</p>
+      )
+      : error ? (
+        <p style={{color: 'red'}}>{error}</p>
+      ) : (
+        <ul>
         {users.map(user => (
           <li key={user.id}>
             {user.name} ({user.email}){' '}
@@ -77,6 +83,7 @@ function App() {
           </li>
         ))}
       </ul>
+      )}
     </div>
   );
 }
