@@ -52,32 +52,34 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Users</h1>
-      <div>
+    <div className="фpp">
+      <h1 className='app-title'>Users</h1>
+      <div className='form'>
         <input
           type="text"
           placeholder='Name'
           value={name}
           onChange={e => setName(e.target.value)}
+          className='form-input'
         />
         <input
           type='email'
           placeholder='Email'
           value={email}
           onChange={e => setEmail(e.target.value)}
+          className='form-input'
         />
-        <button onClick={addUser}>Add User</button>
+        <button onClick={addUser} className='form-button'>Add User</button>
       </div>
       {loading ? (
-        <p>Loading...</p>
+        <p className='loading'>Loading...</p>
       )
       : error ? (
-        <p style={{color: 'red'}}>{error}</p>
+        <p style={{color: 'red'}} className='error'>{error}</p>
       ) : (
-        <ul>
+        <ul className='user-list'>
         {users.map(user => (
-          <li key={user.id}>
+          <li key={user.id} className='user-item'>
             {user.name} ({user.email}){' '}
             <button onClick={() => deleteUser(user.id)}>Delete</button>
           </li>
