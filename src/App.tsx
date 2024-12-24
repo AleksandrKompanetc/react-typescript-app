@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 type User = {
@@ -8,12 +8,31 @@ type User = {
 }
 
 function App() {
-  const [users, setUsers] = useState<User[]>([
-    { id: 1, name: 'Alice', email: 'alice@example.com' },
-    { id: 2, name: 'Bob', email: 'bob@example.com' }
-  ]);
+  const [users, setUsers] = useState<User[]>([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        const data: User[] = await response.json();
+        setUsers(data);
+      } catch(err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchUsers();
+  }, [])
 
   const addUser = () => {
     if (name.trim() && email.trim()) {
