@@ -15,9 +15,22 @@ function App() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
-  const addUser = () => {}
+  const addUser = () => {
+    if (name.trim() && email.trim()) {
+      const newUser: User = {
+        id: Date.now(),
+        name,
+        email
+      };
+      setUsers([...users, newUser]);
+      setName('');
+      setEmail('');
+    }
+  };
 
-  const deleteUser = () => {}
+  const deleteUser = (id: number) => {
+    setUsers(users.filter(user => user.id !== id));
+  }
 
   return (
     <div className="App">
